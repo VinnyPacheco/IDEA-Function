@@ -1,0 +1,49 @@
+'****************************************************************************************************
+'	Name:		removeBlanksFromArray
+'	Description:	Routine to remove blank entries to an array
+'****************************************************************************************************
+Private Function removeBlanksFromArray(tempType As Integer)
+	Dim tempArray() As String
+	Dim i, ILoop As Integer
+	ReDim tempArray(0)
+	
+	If tempType = 1 Then
+		For ILoop = 0 To UBound(tempListbox1)
+			If tempListbox1(ILoop) <> "" Then
+				tempArray(UBound(tempArray)) = tempListbox1(ILoop) 
+				If ILoop <> UBound(tempListBox1) Then 'don't increment on the last pass
+					ReDim preserve tempArray(UBound(tempArray) + 1)
+				End If
+			End If
+		Next ILoop
+		'MsgBox UBound(MyArray)
+		i = UBound(tempArray)
+		Erase tempListbox1
+	
+		ReDim tempListbox1(i)
+		For ILoop = 0 To UBound(tempArray)
+			'MsgBox "i " & ILoop & " - " & tempArray(ILoop)
+			tempListbox1(ILoop) = tempArray(ILoop) 
+		Next ILoop
+	Else
+		For ILoop = 0 To UBound(tempListbox2)
+			If tempListbox2(ILoop) <> "" Then
+				tempArray(UBound(tempArray)) = tempListbox2(ILoop) 
+				If ILoop <> UBound(tempListBox2) Then 'don't increment on the last pass
+					ReDim preserve tempArray(UBound(tempArray) + 1)
+				End If
+			End If
+		Next ILoop
+		'MsgBox UBound(MyArray)
+		i = UBound(tempArray)
+		Erase tempListbox2
+	
+		ReDim tempListbox2(i)
+		For ILoop = 0 To UBound(tempArray)
+			'MsgBox "i " & ILoop & " - " & tempArray(ILoop)
+			tempListbox2(ILoop) = tempArray(ILoop) 
+		Next ILoop
+
+	End If
+
+End Function

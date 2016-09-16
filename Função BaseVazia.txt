@@ -1,0 +1,11 @@
+'Verifica se a base está vazia
+Function BaseVazia(pBase As String)  As Boolean
+	If Dir(vDiretorio & "\" & pBase) = vbNullString Then
+		BaseVazia = True
+		Exit Function
+	End If
+	
+	Set db = Client.OpenDatabase(pBase)
+	BaseVazia = (db.Count <= 0)
+	Set db = Nothing
+End Function

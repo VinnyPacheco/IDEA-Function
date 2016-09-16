@@ -1,0 +1,28 @@
+'****************************************************************************************************
+'	Name:		sortArray
+'	Description:	Routine to sort an array
+'	Accepts:		A one dimensional array
+'	Returns:		Same array sorted 
+'****************************************************************************************************
+Private Function sortArray(MyArray() As String)
+	Dim lLoop, lLoop2 As Integer
+	Dim str1, str2 As String
+
+	For lLoop = 1 To UBound(MyArray)
+	
+		For lLoop2 = lLoop To UBound(MyArray)
+		
+			If UCase(MyArray(lLoop2)) < UCase(MyArray(lLoop)) Then
+			
+				str1 = MyArray(lLoop)
+				str2 = MyArray(lLoop2)
+				MyArray(lLoop) = str2
+				MyArray(lLoop2) = str1
+			
+			End If
+		
+		Next lLoop2
+	
+	Next lLoop
+	MyArray(0) = "* Selecione um"
+End Function

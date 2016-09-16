@@ -1,0 +1,28 @@
+'****************************************************************************************************
+'	Name:		getFolder
+'	Description:	Routine to obtain the folder
+'	Returns:		the folder path
+'****************************************************************************************************
+Function getFolder() 'this one uses the working directory as the highest level directory
+	Dim BrowseFolder As String
+	Dim oFolder, oFolderItem
+	Dim oPath, oShell, strPath
+	Dim Current As Variant 'per Windows documentation this is defined as a variant and not a string
+	
+	
+	Set oShell = CreateObject( "Shell.Application" )
+	Set oFolder = oShell.Namespace(17) 'the 17 indicates that we are looking at the virtual folder that contains everything on the local computer
+	Current = Client.WorkingDirectory()
+	Set oFolder = oShell.BrowseForFolder(0, "Please select the folder where the files are located:", 1, Current)
+	
+	If (Not oFolder is Nothing) Then
+		Set oFolderItem = oFolder.Self
+		oPath = oFolderItem.Path
+		
+		If Right(oPath, 1) <> "\" Then
+			oPath = oPath & "\"
+		End If
+	End If
+	
+	getFolder = oPath   
+End Function

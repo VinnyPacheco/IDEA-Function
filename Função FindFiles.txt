@@ -1,0 +1,52 @@
+'****************************************************************************************************
+'	Name:		FindFiles
+'	Description:	Routine to find files of a certain type (extension) in a certain directory
+'	Accepts:		path - string - path where the files are stored
+'			ext - string - extension of files to find
+'			files() - array - array to store the list of files
+'	Returns:		
+'****************************************************************************************************
+Private Function FindFiles(path As String,  ext As String,  files())
+
+	Dim ffile As String
+	Dim firstbackspace As String
+	Dim firstbackspacenum As String
+	Dim importname As String
+	ffile = Dir$(path & "*." & ext)
+	
+	If Len(ffile) = 0 Then Exit Function
+	
+	'-------- Dir ext = *.ext* fixing by checking length
+	Do 				
+	
+		firstbackspace = strReverse (ffile) 
+		firstbackspacenum  = InStr(1,firstbackspace, ".")
+		importname = Right(ffile, firstbackspacenum - 1)			
+
+		If Len(importname) = Len(ext) Then 
+		
+			If Not IsNull(ffile) Then
+			
+				'-------- If one value found return function true and redim array 
+				If (FindFiles = False) Then				
+					ReDim files(0)
+					FindFiles = True
+				Else
+				
+					ReDim Preserve files(UBound(files) + 1) 		
+			
+				End If
+		
+			files(UBound(files)) = ffile
+		
+			Else
+				Exit Do
+			End If
+	
+		End If
+		
+		ffile = Dir        
+	
+	Loop Until Len(ffile) = 0
+        
+End Function
