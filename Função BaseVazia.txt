@@ -1,5 +1,5 @@
 'Verifica se a base está vazia
-Function BaseVazia(pBase As String)  As Boolean
+Function BaseVazia(pBase As String) As Boolean
 	If Dir(vDiretorio & "\" & pBase) = vbNullString Then
 		BaseVazia = True
 		Exit Function
