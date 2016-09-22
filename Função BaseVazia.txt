@@ -1,5 +1,7 @@
 'Verifica se a base está vazia
 Function BaseVazia(pBase As String) As Boolean
+'obs: Parâmetro precisa ter o ".IMD" no final
+
 	If Dir(vDiretorio & "\" & pBase) = vbNullString Then
 		BaseVazia = True
 		Exit Function
